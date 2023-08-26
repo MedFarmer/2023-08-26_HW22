@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+</head>
+<body>
+    <div>
+        <table>
+                <tr>
+                    <th>picture</th>
+                    <th> delete</th>
+                </tr>    
+            {% for i in data %}
+
+                <tr>
+                    <td>
+                        <img src="{{ i.image.url }}" style="height: 200px; width:auto">
+                    </td>
+                    <td>
+                        <a href="{% url 'delete' i.id %}">delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="image">
+    <button type="submit"> add </button>
+    </form> <br>
+    <a href='{% url 'students' %}'> go to Students </a>
+</body>
+</html>
